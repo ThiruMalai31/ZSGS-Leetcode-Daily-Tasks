@@ -1,0 +1,39 @@
+class Solution {
+    public int maxNumberOfFamilies(int n, int[][] reservedSeats) {
+      
+        HashMap<Integer, Set<Integer>>m = new HashMap<>();
+ 
+        for(int i=0;i<reservedSeats.length;i++){
+         
+                if(m.containsKey(reservedSeats[i][0])){
+                        Set<Integer>temp=m.get(reservedSeats[i][0]);
+                        temp.add(reservedSeats[i][1]);
+                        m.put(reservedSeats[i][0],temp); 
+                }
+                else{
+                        Set<Integer>set=new HashSet<>();
+                        set.add(reservedSeats[i][1]);
+                        m.put(reservedSeats[i][0],set);
+                }
+        }
+        int cnt=0;
+        for(int it : m.keySet()){
+            Set<Integer>se=m.get(it);
+            int tempcnt=0;
+            if(!se.contains(2) && !se.contains(3) && !se.contains(4) && !se.contains(5)){
+                tempcnt++;
+            }
+            if(!se.contains(6) && !se.contains(7) && !se.contains(8) && !se.contains(9)){
+                tempcnt++;
+            }
+            if(tempcnt==0 && !se.contains(7) && !se.contains(4) && !se.contains(5) && !se.contains(6)){
+                tempcnt++;
+            }
+            cnt+=tempcnt;
+            // System.out.println(cnt);
+        }
+        cnt+=(n-m.size())*2;
+        return cnt;
+       
+    }
+}
