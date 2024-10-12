@@ -1,0 +1,35 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer>li=new ArrayList<>();
+        li.add(1);
+        res.add(li);
+        if(numRows==1)return res;
+        li=new ArrayList<>();
+        li.add(1);
+        li.add(1);
+        res.add(li);
+        if(numRows==2)return res;
+
+        for(int i=3;i<=numRows;i++){
+
+            List<Integer>temp=new ArrayList<>();
+            temp.add(1);
+            int k=i-2;
+            int c=1;
+            while(k>0){
+                System.out.print(i+" "+res.get(i-2).get(c-1));  
+                // temp.add(res[i-2][k-1]+res[i-2][k]);
+                temp.add(res.get(i-2).get(c-1)+res.get(i-2).get(c));
+                c++;
+                k--;
+                 System.out.println();
+            }
+            temp.add(1);
+
+            res.add(temp);
+        }
+        return res;
+    }
+}
