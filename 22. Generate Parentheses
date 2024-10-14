@@ -1,0 +1,17 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+       List <String>arr =new ArrayList<>();
+       return helper(n,arr,0,0,"");
+    }
+    List<String> helper(int n, List<String> arr,int open,int close,String ans){
+        if(open==n && close==n){
+            arr.add(ans);
+        }
+        if(open<n)
+            helper(n,arr,open+1,close,ans+"(");
+        if(close<open){
+            helper(n,arr,open,close+1,ans+")");
+        }
+        return arr;
+    }
+}
