@@ -1,0 +1,16 @@
+class Solution {
+    public List<String> validStrings(int n) {
+        List<String> arr =new ArrayList<>();
+        helper(0,arr,n,"");
+        return arr;
+    }
+    void helper(int i,List<String>arr,int max,String str){
+        if(i==max){
+            arr.add(str);
+            return;
+        }
+        helper(i+1,arr,max,str+"1");
+        if(str.length()==0 || str.charAt(i-1)!='0')
+        helper(i+1,arr,max,str+"0");
+    }
+}
